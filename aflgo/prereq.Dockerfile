@@ -2,7 +2,7 @@
 FROM zjuchenyuan/base
 
 RUN apt-get update && \
-  apt-get install -y sudo curl wget build-essential make cmake ninja-build git subversion python2.7 binutils-gold binutils-dev python-dev python3 python3-dev python3-pip autoconf automake libtool-bin python-bs4 libclang-4.0-dev gawk pkg-config &&\
+  apt-get install -y sudo curl wget build-essential make cmake ninja-build git subversion python2.7 binutils-gold binutils-dev python-dev python3 python3-dev python3-pip autoconf automake libtool-bin python-bs4 libclang-4.0-dev gawk pkg-config libboost-all-dev &&\
   python3 -m pip install --upgrade pip && python3 -m pip install networkx pydot pydotplus
 
 RUN mkdir -p /build && cd /build &&\
