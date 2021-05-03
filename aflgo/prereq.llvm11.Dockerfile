@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive &&\
   apt-get install -y wget curl build-essential make cmake ninja-build git subversion binutils-gold binutils-dev python3-distutils python2.7 \
-        python-dev python3 python3-dev python3-pip autoconf automake libtool-bin python-bs4 gawk libboost-all-dev gnuplot libclang-11-dev &&\
+        python-dev python3 python3-dev python3-pip autoconf automake libtool-bin python-bs4 gawk libboost-all-dev gnuplot libclang-11-dev lcov &&\
   apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* &&\
   python3 -m pip install --upgrade pip && python3 -m pip install networkx pydot pydotplus
 
@@ -55,10 +55,16 @@ ENV LC_ALL=C
 ENV CXX=clang++
 ENV CC=clang
 
+RUN cd /usr/local/bin && \
+  wget https://raw.githubusercontent.com/mrash/afl-cov/master/afl-cov &&\
+  chmod +x ./afl-cov
+
+
 ENV AFLGO=/aflgo
 # RUN git clone https://github.com/pato-research/aflgo.git $AFLGO &&\
 #   cd $AFLGO && make clean all && cd llvm_mode && make clean all && cd .. &&\
 #   cd distance_calculator && cmake -G Ninja ./ && cmake --build ./
+
 
 WORKDIR $AFLGO
 
