@@ -56,7 +56,7 @@ ENV CXX=clang++
 ENV CC=clang
 
 ENV AFLGO=/aflgo
-RUN git clone https://github.com/pato-research/aflgo.git $AFLGO &&\
+RUN git clone https://github.com/pasta-lab/aflgo.git $AFLGO &&\
   cd $AFLGO && make clean all && cd llvm_mode && make clean all && cd .. &&\
   cd distance_calculator && cmake -G Ninja ./ && cmake --build ./
 
